@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            style="@style/ScrollWithoutClipping"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/navigation_padding"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/base_margin"
+                    android:background="@color/colorWhite">
+
+                    <EditText
+                        android:id="@id/et_segment_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:hint="@string/hint_segment_name"
+                        android:padding="@dimen/base_padding" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/base_margin"
+                    android:layout_marginEnd="@dimen/base_margin"
+                    android:layout_marginStart="@dimen/base_margin"
+                    android:background="@color/colorWhite">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.luania.witchpot.widget.LargenAnimDraweeFrameLayout
+                            android:id="@id/largen_anim_drawee_frame_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <EditText
+                            android:id="@id/et_segment_start"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorWhite"
+                            android:gravity="start"
+                            android:hint="@string/hint_segment_start"
+                            android:minHeight="@dimen/min_height_xs_edit"
+                            android:padding="@dimen/base_padding" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <include layout="@layout/layout_appbar" />
+    </android.support.design.widget.CoordinatorLayout>
+</com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>

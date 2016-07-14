@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.luania.witchpot.widget.UserDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/user_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout
+        android:id="@id/frame_layout_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.luania.witchpot.widget.AutoSwipeRefreshLayout
+                android:id="@id/auto_swipe_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/rv"
+                    android:paddingBottom="@dimen/navigation_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </com.luania.witchpot.widget.AutoSwipeRefreshLayout>
+
+            <include layout="@layout/layout_appbar" />
+        </android.support.design.widget.CoordinatorLayout>
+    </com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
+
+    <include layout="@layout/navigation_user" />
+</com.luania.witchpot.widget.UserDrawerLayout>

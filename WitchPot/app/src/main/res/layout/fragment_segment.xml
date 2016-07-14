@@ -1,0 +1,16 @@
+<com.luania.witchpot.widget.AutoSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/auto_swipe_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <android.support.v4.widget.NestedScrollView
+        style="@style/ScrollWithoutClipping"
+        android:paddingBottom="@dimen/navigation_padding"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include layout="@layout/layout_segment_card" />
+    </android.support.v4.widget.NestedScrollView>
+</com.luania.witchpot.widget.AutoSwipeRefreshLayout>

@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.luania.witchpot">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar" >
+        <activity android:name=".activity.LoaddingAvtivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.DrawerActivity" />
+        <activity android:name=".activity.LogInActivity" />
+        <activity android:name=".activity.SignUpActivity" />
+        <activity
+            android:name=".activity.ChildListActivity"
+            android:theme="@style/DialogTheme" />
+        <activity android:name=".activity.AddSegmentActivity" />
+        <activity android:name=".activity.SegmentActivity" />
+    </application>
+
+</manifest>

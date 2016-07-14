@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">WitchPot</string>
+
+    <string name="action_create_segment">新建片段</string>
+    <string name="action_drill_down">后夜</string>
+    <string name="action_drill_up">前夜</string>
+    <string name="action_select_a_child">分歧点</string>
+    <string name="action_create">新建</string>
+    <string name="action_create_success">新建成功</string>
+
+    <string name="hint_password">密码</string>
+    <string name="hintre_password">再次输入密码</string>
+    <string name="hint_segment_name">输入片段名称</string>
+    <string name="hint_segment_start">输入片段内容</string>
+
+    <string name="message_input_wrong">请输入正确信息</string>
+    <string name="message_input_password_diff">前后密码不一致</string>
+    <string name="message_input_null_content">请输入内容</string>
+    <string name="message_more_press_to_exit">再按一次退出</string>
+    <string name="message_no_data">没有数据</string>
+    <string name="message_shoujo_inori">少女祈祷中。。。</string>
+    <string name="message_confirm">完成</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="user_name">用户名</string>
+    <string name="user_email">邮箱</string>
+    <string name="user_signup">注册</string>
+    <string name="user_signup_successed">注册成功</string>
+    <string name="user_signup_failed">注册失败</string>
+    <string name="user_please_login">请先登陆</string>
+    <string name="user_login">登陆</string>
+    <string name="user_login_successed">登陆成功</string>
+    <string name="user_login_failed">登陆失败</string>
+    <string name="user_logout">退出登陆</string>
+    <string name="user_logout_success">退出登陆成功</string>
+
+
+
+    <string name="other_space"> </string>
+    <string name="other_image">图片</string>
+    <string name="other_home">首页</string>
+    <string name="other_root_list">根片段列表</string>
+</resources>
