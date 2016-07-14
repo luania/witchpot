@@ -26,7 +26,7 @@
         <activity
             android:name=".activity.ChildListActivity"
             android:theme="@style/DialogTheme" />
-        <activity android:name=".activity.AddSegmentActivity" />
+        <activity android:name=".activity.CreateSegmentActivity" />
         <activity android:name=".activity.SegmentActivity" />
     </application>
 

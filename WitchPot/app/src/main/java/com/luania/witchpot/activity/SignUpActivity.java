@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.luania.witchpot.R;
 import com.luania.witchpot.base.BaseActivity;
-import com.luania.witchpot.service.DataService;
+import com.luania.witchpot.service.UserService;
 import com.wilddog.client.Wilddog;
 import com.wilddog.client.WilddogError;
 
@@ -45,7 +45,7 @@ public class SignUpActivity extends BaseActivity {
                     return;
                 }
 
-                DataService.createUser(email, password, new Wilddog.ValueResultHandler<Map<String, Object>>() {
+                UserService.createUser(email, password, new Wilddog.ValueResultHandler<Map<String, Object>>() {
                     @Override
                     public void onSuccess(Map<String, Object> stringObjectMap) {
                         toast(stringObjectMap.toString());

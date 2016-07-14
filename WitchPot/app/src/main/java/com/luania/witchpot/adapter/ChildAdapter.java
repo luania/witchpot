@@ -10,6 +10,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.luania.witchpot.R;
 import com.luania.witchpot.base.SimpleBaseAdapter;
 import com.luania.witchpot.pojo.SegmentPojo;
+import com.luania.witchpot.util.MediaUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,8 @@ public class ChildAdapter extends SimpleBaseAdapter<Map.Entry<String, SegmentPoj
         }
         SegmentPojo segmentPojo = datas.get(position).getValue();
         viewHolder.tvTitle.setText(segmentPojo.decodeText());
-        viewHolder.simpleDraweeView.setImageURI(segmentPojo.decodeImage()+"-mini");
+        String url = MediaUtil.getMiniImage(segmentPojo.decodeImage());
+        viewHolder.simpleDraweeView.setImageURI(url);
         viewHolder.tvAuthor.setText(segmentPojo.getAuthor());
         return convertView;
     }

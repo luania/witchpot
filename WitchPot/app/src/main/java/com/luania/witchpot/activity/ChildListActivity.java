@@ -69,7 +69,7 @@ public class ChildListActivity extends BaseActivity {
                 int itemId = item.getItemId();
                 switch (itemId) {
                     case R.id.item_create:
-                        AddSegmentActivity.start(activity, pid);
+                        CreateSegmentActivity.start(activity, pid);
                         break;
                 }
                 return false;

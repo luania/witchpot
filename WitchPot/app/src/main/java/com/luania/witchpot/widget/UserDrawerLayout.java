@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.luania.witchpot.R;
 import com.luania.witchpot.activity.LogInActivity;
-import com.luania.witchpot.service.DataService;
+import com.luania.witchpot.service.UserService;
 import com.wilddog.client.AuthData;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -47,7 +47,7 @@ public class UserDrawerLayout extends DrawerLayout {
         civProfileImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AuthData authData = DataService.getAutDATA();
+                AuthData authData = UserService.getAutDATA();
                 if (authData != null) {
                     return;
                 }
@@ -60,7 +60,7 @@ public class UserDrawerLayout extends DrawerLayout {
         btnLogout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataService.logout();
+                UserService.logout();
                 Toast.makeText(context, context.getString(R.string.user_logout_success), Toast.LENGTH_SHORT).show();
                 setUserData();
 
@@ -81,7 +81,7 @@ public class UserDrawerLayout extends DrawerLayout {
         if(navigationView == null){
             return;
         }
-        AuthData authData = DataService.getAutDATA();
+        AuthData authData = UserService.getAutDATA();
         if (authData != null) {
             tvUserEmail.setText((CharSequence) authData.getProviderData().get("email"));
             btnLogout.setVisibility(VISIBLE);

@@ -11,6 +11,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.luania.witchpot.R;
 import com.luania.witchpot.activity.SegmentActivity;
 import com.luania.witchpot.pojo.SegmentPojo;
+import com.luania.witchpot.util.MediaUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -37,14 +38,15 @@ public class RootAdapter extends RecyclerView.Adapter<RootAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RootAdapter.ViewHolder holder, final int position) {
-        final Map.Entry<String, SegmentPojo> segmentPojoEntry = segmentPojos.get(position);
-        holder.tvTitle.setText(segmentPojoEntry.getValue().decodeTitle());
-        String url = segmentPojoEntry.getValue().decodeImage()+"-little";
+        final SegmentPojo segmentPojo = segmentPojos.get(position).getValue();
+        holder.tvTitle.setText(segmentPojo.decodeTitle());
+
+        String url = MediaUtil.getLittleImage(segmentPojo.decodeImage());
         holder.simpleDraweeView.setImageURI(url);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SegmentActivity.start(context,segmentPojoEntry.getValue().getId());
+                SegmentActivity.start(context,segmentPojo.getId());
             }
         });
     }

@@ -1,6 +1,6 @@
 package com.luania.witchpot.pojo;
 
-import com.luania.witchpot.service.DataService;
+import com.luania.witchpot.service.UserService;
 import com.luania.witchpot.util.EnDecoderUtil;
 
 import java.io.Serializable;
@@ -20,7 +20,7 @@ public class SegmentPojo implements Serializable {
         createTime = System.currentTimeMillis();
         this.text = EnDecoderUtil.encode(text);
         try {
-            this.author = EnDecoderUtil.encode(DataService.getAutDATA().getUid());
+            this.author = EnDecoderUtil.encode(UserService.getAutDATA().getUid());
         } catch (Exception e) {
             this.author = "匿名用户";
         }

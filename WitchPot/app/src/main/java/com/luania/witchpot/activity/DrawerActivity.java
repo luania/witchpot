@@ -15,6 +15,7 @@ import com.luania.witchpot.listeners.DataListener;
 import com.luania.witchpot.pojo.SegmentPojo;
 import com.luania.witchpot.service.DataParser;
 import com.luania.witchpot.service.DataService;
+import com.luania.witchpot.service.UserService;
 import com.luania.witchpot.widget.AutoSwipeRefreshLayout;
 import com.luania.witchpot.widget.UserDrawerLayout;
 
@@ -41,28 +42,28 @@ public class DrawerActivity extends BaseActivity {
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
         findViews();
         initRecycler();
         initSwipe();
         initToolbar();
-        initActionBarDrawerToggle(toolbar);
+        initActionBarDrawerToggle();
     }
 
-    private void findViews(){
+    private void findViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         userDrawerLayout = (UserDrawerLayout) findViewById(R.id.user_drawer_layout);
         autoSwipeRefreshLayout = (AutoSwipeRefreshLayout) findViewById(R.id.auto_swipe_refresh_layout);
-        recyclerView = (RecyclerView)findViewById(R.id.rv);
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
     }
 
-    private void initRecycler(){
+    private void initRecycler() {
         rootAdapter = new RootAdapter(activity, segmentPojos);
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         recyclerView.setAdapter(rootAdapter);
     }
 
-    private void initSwipe(){
+    private void initSwipe() {
         autoSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -71,7 +72,7 @@ public class DrawerActivity extends BaseActivity {
         });
     }
 
-    private void initToolbar(){
+    private void initToolbar() {
         toolbar.setTitle(R.string.other_root_list);
         toolbar.inflateMenu(R.menu.create);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -80,7 +81,9 @@ public class DrawerActivity extends BaseActivity {
                 int itemId = item.getItemId();
                 switch (itemId) {
                     case R.id.item_create:
-                        AddSegmentActivity.start(activity,"root");
+                        if (UserService.checkAuthData(activity)) {
+                            CreateSegmentActivity.start(activity, "root");
+                        }
                         break;
                 }
                 return false;
@@ -88,15 +91,15 @@ public class DrawerActivity extends BaseActivity {
         });
     }
 
-    private void initActionBarDrawerToggle(Toolbar tb) {
+    private void initActionBarDrawerToggle() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                DrawerActivity.this, userDrawerLayout,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                DrawerActivity.this, userDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         userDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
     }
 
-    private void loadData(){
-        DataService.getChildList(activity,"root", new DataListener(activity) {
+    private void loadData() {
+        DataService.getChildList(activity, "root", new DataListener(activity) {
             @Override
             public void onJsonGetted(String json) {
                 segmentPojos.clear();
@@ -127,7 +130,7 @@ public class DrawerActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(userDrawerLayout.isOpen()){
+        if (userDrawerLayout.isOpen()) {
             userDrawerLayout.close();
             return;
         }

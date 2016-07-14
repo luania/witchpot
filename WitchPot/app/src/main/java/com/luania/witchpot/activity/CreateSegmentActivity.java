@@ -9,26 +9,29 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.facebook.common.references.CloseableReference;
+import com.facebook.datasource.DataSource;
+import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber;
+import com.facebook.imagepipeline.image.CloseableImage;
 import com.luania.witchpot.R;
 import com.luania.witchpot.base.BaseActivity;
 import com.luania.witchpot.listeners.DataCompletionListener;
 import com.luania.witchpot.pojo.SegmentPojo;
 import com.luania.witchpot.service.DataService;
 import com.luania.witchpot.service.qiniu.MediaService;
+import com.luania.witchpot.util.ColorUtil;
 import com.luania.witchpot.util.FileUtil;
 import com.luania.witchpot.util.MediaUtil;
 import com.luania.witchpot.widget.LargenAnimDraweeFrameLayout;
-import com.wilddog.client.AuthData;
 import com.wilddog.client.Wilddog;
 
-public class AddSegmentActivity extends BaseActivity {
+public class CreateSegmentActivity extends BaseActivity {
 
     private LargenAnimDraweeFrameLayout largenAnimDraweeFrameLayout;
 
     public static void start(Context context, String pid) {
-        Intent intent = new Intent(context, AddSegmentActivity.class);
+        Intent intent = new Intent(context, CreateSegmentActivity.class);
         intent.putExtra("pid", pid);
         context.startActivity(intent);
     }
@@ -44,7 +47,7 @@ public class AddSegmentActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_segment);
+        setContentView(R.layout.activity_create_segment);
 
         pid = getIntent().getStringExtra("pid");
 
@@ -67,7 +70,7 @@ public class AddSegmentActivity extends BaseActivity {
     }
 
     private void initToolbar(){
-        toolbar.setTitle(getString(R.string.action_create_segment));
+        toolbar.setTitle(R.string.action_create_segment);
         toolbar.inflateMenu(R.menu.add_segment);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -95,7 +98,7 @@ public class AddSegmentActivity extends BaseActivity {
         }
 
         showDialog();
-        DataService.createSegment(activity, new SegmentPojo(start, pid, name, imageUrl), new DataCompletionListener(AddSegmentActivity.this) {
+        DataService.createSegment(activity, new SegmentPojo(start, pid, name, imageUrl), new DataCompletionListener(CreateSegmentActivity.this) {
             @Override
             public void onSuccess(Wilddog wilddog) {
                 toast(R.string.action_create_success);
@@ -117,22 +120,26 @@ public class AddSegmentActivity extends BaseActivity {
     }
 
     private void upLoadImage(Intent data) {
-        AuthData authData = DataService.getAutDATA();
-        if (authData == null) {
-            Toast.makeText(activity, R.string.user_please_login, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
         final Uri imageUri = data.getData();
         Bitmap bitmap = FileUtil.getBitmapFromUri(activity, imageUri);
         showDialog();
-        MediaService.upLoadImage(bitmap, activity, new MediaService.UpLoadCompletionListener() {
+        MediaService.upLoadImage(bitmap, new MediaService.UpLoadCompletionListener() {
             @Override
             public void upLoadComplete(String url) {
                 dismissDialog();
                 largenAnimDraweeFrameLayout.setImageURI(url);
                 imageUrl = url;
+                MediaUtil.getBitmapWithFresco(activity, url, new BaseBitmapDataSubscriber() {
+                    @Override
+                    protected void onNewResultImpl(Bitmap bitmap) {
+                        ColorUtil.tintImageView(bitmap,largenAnimDraweeFrameLayout.getIvRemove());
+                    }
+
+                    @Override
+                    protected void onFailureImpl(DataSource<CloseableReference<CloseableImage>> dataSource) {
+
+                    }
+                });
             }
         });
     }

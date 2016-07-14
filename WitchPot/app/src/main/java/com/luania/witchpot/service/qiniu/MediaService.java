@@ -1,11 +1,10 @@
 package com.luania.witchpot.service.qiniu;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 
-import com.luania.witchpot.service.DataService;
+import com.luania.witchpot.service.UserService;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
@@ -25,10 +24,10 @@ public class MediaService {
     public static final String URL = "http://o9se8xpch.bkt.clouddn.com/";
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void upLoadImage(Bitmap bitmap, Context context, final UpLoadCompletionListener upLoadCompletionListener) {
+    public static void upLoadImage(Bitmap bitmap, final UpLoadCompletionListener upLoadCompletionListener) {
         UploadManager uploadManager = new UploadManager();
 
-        String uid = DataService.getAutDATA().getUid();
+        String uid = UserService.getAutDATA().getUid();
         String key = uid + System.currentTimeMillis() + ".png";
 
         final Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);

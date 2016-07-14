@@ -8,7 +8,6 @@ import com.luania.witchpot.listeners.DataCompletionListener;
 import com.luania.witchpot.listeners.DataListener;
 import com.luania.witchpot.pojo.SegmentPojo;
 import com.luania.witchpot.util.ACache;
-import com.wilddog.client.AuthData;
 import com.wilddog.client.ValueEventListener;
 import com.wilddog.client.Wilddog;
 
@@ -21,25 +20,6 @@ import java.util.Map;
 public class DataService {
     public static final String WILDDOG = "https://witchpot.wilddogio.com/";
     public static final String WILDDOG_SEGMENT = "https://witchpot.wilddogio.com/segments";
-
-    public static AuthData getAutDATA() {
-        return new Wilddog(WILDDOG).getAuth();
-    }
-
-    public static void loginWithPassword(String email, String password, Wilddog.AuthResultHandler handler) {
-        new Wilddog(WILDDOG).authWithPassword(email, password, handler);
-    }
-
-    public static void logout() {
-        new Wilddog(WILDDOG).unauth();
-    }
-
-    public static void createUser(String email, String password, Wilddog.ValueResultHandler<Map<String, Object>> handler) {
-        new Wilddog(WILDDOG).createUser(email, password, handler);
-    }
-
-
-
 
     /*
     清空数据

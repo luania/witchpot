@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.luania.witchpot.R;
 import com.luania.witchpot.base.BaseActivity;
-import com.luania.witchpot.service.DataService;
+import com.luania.witchpot.service.UserService;
 import com.wilddog.client.AuthData;
 import com.wilddog.client.Wilddog;
 import com.wilddog.client.WilddogError;
@@ -40,7 +40,7 @@ public class LogInActivity extends BaseActivity {
                     toast(getString(R.string.message_input_wrong));
                 }
 
-                DataService.loginWithPassword(email, password, new Wilddog.AuthResultHandler() {
+                UserService.loginWithPassword(email, password, new Wilddog.AuthResultHandler() {
                     @Override
                     public void onAuthenticated(AuthData authData) {
                         toast(getString(R.string.user_login_successed));
