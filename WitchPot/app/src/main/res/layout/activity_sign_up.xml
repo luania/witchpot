@@ -1,70 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+
+        <import type="com.luania.witchpot.widget.MenuToolbar.ToolbarData" />
+
+        <variable
+            name="toolbarData"
+            type="ToolbarData" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".activity.LogInActivity">
+        android:fitsSystemWindows="true">
 
-        <include layout="@layout/layout_appbar" />
-
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/base_margin">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".activity.LogInActivity">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@id/tiet_email"
+            <include layout="@layout/layout_appbar"
+                bind:toolbarData="@{toolbarData}"/>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="email" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="@dimen/base_margin">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/base_margin">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tietEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="email" />
+            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@id/tiet_password"
-                android:inputType="textPassword"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_password" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="@dimen/base_margin">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/base_margin">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tietPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@id/tiet_re_password"
-                android:inputType="textPassword"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hintre_password" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="@dimen/base_margin">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/base_margin">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tietRePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hintre_password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@id/btn_signup"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="?attr/selectableItemBackground"
-                android:text="@string/user_signup" />
-        </RelativeLayout>
+                android:layout_margin="@dimen/base_margin">
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:text="@string/user_signup" />
+            </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

@@ -60,7 +60,7 @@ public class LargenAnimDraweeFrameLayout extends FrameLayout {
         });
     }
 
-    public void setImageURI(String uri) {
+    public void setImage(String uri) {
         ValueAnimator valueAnimator = ValueAnimator.ofInt(getHeight(), getWidth());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -96,7 +96,6 @@ public class LargenAnimDraweeFrameLayout extends FrameLayout {
     public interface OnHideListener {
         void onHide();
     }
-
 
     public SimpleDraweeView getSimpleDraweeView() {
         return simpleDraweeView;

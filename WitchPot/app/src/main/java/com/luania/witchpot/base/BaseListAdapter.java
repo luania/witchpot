@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * Created by luania on 16/6/28.
  */
-public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
+public abstract class BaseListAdapter<D> extends BaseAdapter {
 
     public Context context;
-    public List<T> datas;
+    public List<D> datas;
 
     @Override
     public Object getItem(int position) {

@@ -12,8 +12,12 @@ import java.util.Map;
  * Created by luania on 16/6/28.
  */
 public class DataParser {
-    public static List<Map.Entry<String, SegmentPojo>> toXsList(String json){
+    public static List<SegmentPojo> toSegmentList(String json){
         Map<String, SegmentPojo> map = new Gson().fromJson(json, new TypeToken<Map<String, SegmentPojo>>() {}.getType());
-        return new ArrayList<>(map.entrySet());
+        ArrayList<SegmentPojo> result = new ArrayList<>();
+        for (Map.Entry<String, SegmentPojo> stringSegmentPojoEntry : map.entrySet()) {
+            result.add(stringSegmentPojoEntry.getValue());
+        }
+        return result;
     }
 }

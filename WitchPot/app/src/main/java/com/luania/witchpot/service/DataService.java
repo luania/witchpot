@@ -12,7 +12,6 @@ import com.wilddog.client.ValueEventListener;
 import com.wilddog.client.Wilddog;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by luania on 16/6/24.
@@ -46,9 +45,9 @@ public class DataService {
                     @Override
                     public void onJsonGetted(String json) {
                         dataListener.onJsonGetted(json);
-                        final List<Map.Entry<String, SegmentPojo>> segmentPojos = DataParser.toXsList(json);
-                        for (Map.Entry<String, SegmentPojo> segmentPojo : segmentPojos) {
-                            aCache.put(segmentPojo.getKey(),gson.toJson(segmentPojo.getValue()));
+                        final List<SegmentPojo> segmentPojos = DataParser.toSegmentList(json);
+                        for (SegmentPojo segmentPojo : segmentPojos) {
+                            aCache.put(segmentPojo.getId(),gson.toJson(segmentPojo));
                         }
                     }
 

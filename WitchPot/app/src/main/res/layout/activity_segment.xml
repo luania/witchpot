@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:bind="http://schemas.android.com/tools">
 
-    <android.support.design.widget.CoordinatorLayout
+    <data>
+
+        <import type="com.luania.witchpot.widget.MenuToolbar.ToolbarData" />
+
+        <variable
+            name="toolbarData"
+            type="ToolbarData" />
+    </data>
+
+    <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@id/frame_layout_fragment"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:background="@color/colorBackground">
 
-        <include layout="@layout/layout_appbar" />
-    </android.support.design.widget.CoordinatorLayout>
-</com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
+            <FrameLayout
+                android:id="@id/frameLayoutFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+            <include
+                android:id="@+id/layoutAppbar"
+                layout="@layout/layout_appbar"
+                bind:toolbarData="@{toolbarData}" />
+        </android.support.design.widget.CoordinatorLayout>
+    </com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
+</layout>

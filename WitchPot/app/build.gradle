@@ -21,6 +21,9 @@ android {
         exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
         exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

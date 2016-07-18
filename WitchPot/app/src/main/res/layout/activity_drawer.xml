@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.luania.witchpot.widget.UserDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/user_drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-    <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout
-        android:id="@id/frame_layout_fragment"
+    <data>
+
+        <variable
+            name="toolbarData"
+            type="com.luania.witchpot.widget.MenuToolbar.ToolbarData" />
+    </data>
+
+    <com.luania.witchpot.widget.UserDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/userDrawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent">
+
+        <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout
+            android:id="@+id/frameLayoutFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.luania.witchpot.widget.AutoSwipeRefreshLayout
-                android:id="@id/auto_swipe_refresh_layout"
+            <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:layout_height="match_parent">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@id/rv"
-                    android:paddingBottom="@dimen/navigation_padding"
+                <com.luania.witchpot.widget.AutoSwipeRefreshLayout
+                    android:id="@+id/autoSwipeRefreshLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-            </com.luania.witchpot.widget.AutoSwipeRefreshLayout>
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <include layout="@layout/layout_appbar" />
-        </android.support.design.widget.CoordinatorLayout>
-    </com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:paddingBottom="@dimen/navigation_padding"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                </com.luania.witchpot.widget.AutoSwipeRefreshLayout>
 
-    <include layout="@layout/navigation_user" />
-</com.luania.witchpot.widget.UserDrawerLayout>
+                <include
+                    android:id="@+id/layoutAppbar"
+                    layout="@layout/layout_appbar"
+                    bind:toolbarData="@{toolbarData}" />
+            </android.support.design.widget.CoordinatorLayout>
+        </com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
+
+        <include layout="@layout/navigation_user" />
+    </com.luania.witchpot.widget.UserDrawerLayout>
+</layout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@id/ll_navigation"
+    android:id="@+id/llNavigation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="left"
@@ -15,7 +15,7 @@
         android:background="@drawable/default_bg">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@id/civ_profile_image"
+            android:id="@+id/civProfileImage"
             android:layout_width="@dimen/header_width"
             android:layout_height="@dimen/header_height"
             android:layout_marginEnd="@dimen/base_margin"
@@ -39,14 +39,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@id/tv_user_name"
+                android:id="@+id/tvUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_name"
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@id/tv_user_email"
+                android:id="@+id/tvUserEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_email"
@@ -61,14 +61,14 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@id/btn_home"
+            android:id="@+id/btnHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:text="@string/other_home" />
 
         <Button
-            android:id="@id/btn_logout"
+            android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_margin"

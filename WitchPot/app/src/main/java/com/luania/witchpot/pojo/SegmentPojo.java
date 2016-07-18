@@ -53,6 +53,10 @@ public class SegmentPojo implements Serializable {
         return sdf.format(new Date(createTime));
     }
 
+    public boolean pidIsRoot(){
+        return "root".equals(pid);
+    }
+
     public String getTitle() {
         return title;
     }

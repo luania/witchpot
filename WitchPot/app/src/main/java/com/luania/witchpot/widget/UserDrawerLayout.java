@@ -33,17 +33,17 @@ public class UserDrawerLayout extends DrawerLayout {
     public UserDrawerLayout(final Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-
-
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        navigationView = findViewById(R.id.ll_navigation);
-        tvUserEmail = (TextView) findViewById(R.id.tv_user_email);
+        navigationView = findViewById(R.id.llNavigation);
+        tvUserEmail = (TextView) findViewById(R.id.tvUserEmail);
+        civProfileImage = (CircleImageView) findViewById(R.id.civProfileImage);
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnHome = (Button) findViewById(R.id.btnHome);
 
-        civProfileImage = (CircleImageView) findViewById(R.id.civ_profile_image);
         civProfileImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +56,6 @@ public class UserDrawerLayout extends DrawerLayout {
             }
         });
 
-        btnLogout = (Button) findViewById(R.id.btn_logout);
         btnLogout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,14 +66,13 @@ public class UserDrawerLayout extends DrawerLayout {
                 closeDrawer(GravityCompat.START);
             }
         });
-        setUserData();
-        btnHome = (Button) findViewById(R.id.btn_home);
         btnHome.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 closeDrawer(GravityCompat.START);
             }
         });
+        setUserData();
     }
 
     public void setUserData() {

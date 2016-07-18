@@ -15,7 +15,7 @@ public class LargenAnimDraweeView extends SimpleDraweeView {
         super(context, attrs);
     }
 
-    public void setImageURIWithAnim(String uri){
+    public void setImage(String uri){
         if(!"noImage".equals(uri)){
             show();
         }else{

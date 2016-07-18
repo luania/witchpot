@@ -1,86 +1,44 @@
 package com.luania.witchpot.activity;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.luania.witchpot.R;
 import com.luania.witchpot.adapter.RootAdapter;
 import com.luania.witchpot.base.BaseActivity;
+import com.luania.witchpot.databinding.ActivityDrawerBinding;
 import com.luania.witchpot.listeners.DataListener;
 import com.luania.witchpot.pojo.SegmentPojo;
 import com.luania.witchpot.service.DataParser;
 import com.luania.witchpot.service.DataService;
 import com.luania.witchpot.service.UserService;
-import com.luania.witchpot.widget.AutoSwipeRefreshLayout;
-import com.luania.witchpot.widget.UserDrawerLayout;
+import com.luania.witchpot.widget.MenuToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class DrawerActivity extends BaseActivity {
 
-    private UserDrawerLayout userDrawerLayout;
-    private Toolbar toolbar;
-    private RecyclerView recyclerView;
-    private AutoSwipeRefreshLayout autoSwipeRefreshLayout;
-
-    private List<Map.Entry<String, SegmentPojo>> segmentPojos = new ArrayList<>();
+    private List<SegmentPojo> segmentPojos = new ArrayList<>();
     private RootAdapter rootAdapter;
     private long lastBackPressedTime = 0;
+    private ActivityDrawerBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
-
-        initViews();
-    }
-
-    private void initViews() {
-        findViews();
-        initRecycler();
-        initSwipe();
-        initToolbar();
-        initActionBarDrawerToggle();
-    }
-
-    private void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        userDrawerLayout = (UserDrawerLayout) findViewById(R.id.user_drawer_layout);
-        autoSwipeRefreshLayout = (AutoSwipeRefreshLayout) findViewById(R.id.auto_swipe_refresh_layout);
-        recyclerView = (RecyclerView) findViewById(R.id.rv);
-    }
-
-    private void initRecycler() {
-        rootAdapter = new RootAdapter(activity, segmentPojos);
-        recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
-        recyclerView.setAdapter(rootAdapter);
-    }
-
-    private void initSwipe() {
-        autoSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadData();
-            }
-        });
-    }
-
-    private void initToolbar() {
-        toolbar.setTitle(R.string.other_root_list);
-        toolbar.inflateMenu(R.menu.create);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        binding = DataBindingUtil.setContentView(activity, R.layout.activity_drawer);
+        binding.setToolbarData(new MenuToolbar.ToolbarData(R.string.other_root_list, R.menu.create, new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int itemId = item.getItemId();
                 switch (itemId) {
-                    case R.id.item_create:
+                    case R.id.itemCreate:
                         if (UserService.checkAuthData(activity)) {
                             CreateSegmentActivity.start(activity, "root");
                         }
@@ -88,13 +46,32 @@ public class DrawerActivity extends BaseActivity {
                 }
                 return false;
             }
+        }));
+
+        initRecycler();
+        initSwipe();
+        initActionBarDrawerToggle();
+    }
+
+    private void initRecycler() {
+        rootAdapter = new RootAdapter(activity, segmentPojos);
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
+        binding.recyclerView.setAdapter(rootAdapter);
+    }
+
+    private void initSwipe() {
+        binding.autoSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
         });
     }
 
     private void initActionBarDrawerToggle() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                DrawerActivity.this, userDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        userDrawerLayout.setDrawerListener(toggle);
+                DrawerActivity.this, binding.userDrawerLayout, binding.layoutAppbar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        binding.userDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
     }
 
@@ -103,13 +80,13 @@ public class DrawerActivity extends BaseActivity {
             @Override
             public void onJsonGetted(String json) {
                 segmentPojos.clear();
-                segmentPojos.addAll(DataParser.toXsList(json));
+                segmentPojos.addAll(DataParser.toSegmentList(json));
                 rootAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFinally() {
-                autoSwipeRefreshLayout.setRefreshing(false);
+                binding.autoSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -125,13 +102,13 @@ public class DrawerActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         loadData();
-        userDrawerLayout.setUserData();
+        binding.userDrawerLayout.setUserData();
     }
 
     @Override
     public void onBackPressed() {
-        if (userDrawerLayout.isOpen()) {
-            userDrawerLayout.close();
+        if (binding.userDrawerLayout.isOpen()) {
+            binding.userDrawerLayout.close();
             return;
         }
 

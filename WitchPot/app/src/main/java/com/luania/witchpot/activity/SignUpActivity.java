@@ -1,15 +1,15 @@
 package com.luania.witchpot.activity;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 
 import com.luania.witchpot.R;
 import com.luania.witchpot.base.BaseActivity;
+import com.luania.witchpot.databinding.ActivitySignUpBinding;
 import com.luania.witchpot.service.UserService;
+import com.luania.witchpot.widget.MenuToolbar;
 import com.wilddog.client.Wilddog;
 import com.wilddog.client.WilddogError;
 
@@ -17,25 +17,20 @@ import java.util.Map;
 
 public class SignUpActivity extends BaseActivity {
 
-    private Toolbar toolbar;
-    private TextInputEditText tietEmail;
-    private TextInputEditText tietPassword;
-    private TextInputEditText tietRePassword;
-    private Button btnSignUp;
+    private ActivitySignUpBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        binding = DataBindingUtil.setContentView(activity, R.layout.activity_sign_up);
 
-        findViews();
-        toolbar.setTitle(getString(R.string.user_login));
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        binding.setToolbarData(new MenuToolbar.ToolbarData(R.string.user_login));
+        binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = tietEmail.getText().toString().trim();
-                final String password = tietPassword.getText().toString().trim();
-                final String rePassword = tietRePassword.getText().toString().trim();
+                final String email = binding.tietEmail.getText().toString().trim();
+                final String password = binding.tietPassword.getText().toString().trim();
+                final String rePassword = binding.tietRePassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(rePassword)) {
                     toast(getString(R.string.message_input_wrong));
@@ -59,13 +54,5 @@ public class SignUpActivity extends BaseActivity {
                 });
             }
         });
-    }
-
-    private void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        tietEmail = (TextInputEditText) findViewById(R.id.tiet_email);
-        tietPassword = (TextInputEditText) findViewById(R.id.tiet_password);
-        tietRePassword = (TextInputEditText) findViewById(R.id.tiet_re_password);
-        btnSignUp = (Button) findViewById(R.id.btn_signup);
     }
 }

@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@id/item_image"
+        android:id="@+id/itemImage"
         android:title="@string/other_image"
         android:icon="@drawable/ic_crop_original_white_48dp"
         app:showAsAction="always" />
 
     <item
-        android:id="@id/item_confirm"
+        android:id="@+id/itemConfirm"
         android:title="@string/message_confirm"
         android:icon="@drawable/ic_done_white_48dp"
         app:showAsAction="always" />

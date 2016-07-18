@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@id/item_confirm"
+        android:id="@+id/itemConfirm"
         android:title="@string/message_confirm"
         android:icon="@drawable/ic_done_white_48dp"
         app:showAsAction="always" />

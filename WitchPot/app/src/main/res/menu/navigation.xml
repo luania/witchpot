@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@id/item_user_exit"
+        android:id="@+id/itemUserExit"
         android:icon="@drawable/ic_directions_walk_black_48dp"
         android:title="@string/user_logout" />
 </menu>
