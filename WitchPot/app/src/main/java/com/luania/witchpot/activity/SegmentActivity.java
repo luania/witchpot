@@ -17,7 +17,6 @@ import com.luania.witchpot.listeners.DataListener;
 import com.luania.witchpot.listeners.OnDrillListener;
 import com.luania.witchpot.pojo.SegmentPojo;
 import com.luania.witchpot.service.DataService;
-import com.luania.witchpot.widget.MenuToolbar;
 
 public class SegmentActivity extends BaseActivity implements SegmentFragment.CanDrillActivity {
 
@@ -60,10 +59,7 @@ public class SegmentActivity extends BaseActivity implements SegmentFragment.Can
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.setContentView(activity, R.layout.activity_segment);
-        binding.setToolbarData(new MenuToolbar.ToolbarData(R.string.other_space));
-
         rootId = getIntent().getExtras().getString("rootId");
 
         initToolbar();

@@ -25,7 +25,6 @@ import com.luania.witchpot.util.ColorUtil;
 import com.luania.witchpot.util.FileUtil;
 import com.luania.witchpot.util.MediaUtil;
 import com.luania.witchpot.widget.LargenAnimDraweeFrameLayout;
-import com.luania.witchpot.widget.MenuToolbar;
 import com.wilddog.client.Wilddog;
 
 public class CreateSegmentActivity extends BaseActivity {
@@ -46,7 +45,17 @@ public class CreateSegmentActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(activity, R.layout.activity_create_segment);
-        binding.setToolbarData(new MenuToolbar.ToolbarData(R.string.action_create_segment,R.menu.add_segment,new Toolbar.OnMenuItemClickListener() {
+
+        pid = getIntent().getStringExtra("pid");
+
+        initToolbar();
+        initLargenAnimDraweeFrameLayout();
+    }
+
+    private void initToolbar(){
+        binding.layoutAppbar.toolbar.setTitle(R.string.action_create_segment);
+        binding.layoutAppbar.toolbar.inflateMenu(R.menu.add_segment);
+        binding.layoutAppbar.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int itemId = item.getItemId();
@@ -60,10 +69,10 @@ public class CreateSegmentActivity extends BaseActivity {
                 }
                 return false;
             }
-        }));
+        });
+    }
 
-        pid = getIntent().getStringExtra("pid");
-
+    private void initLargenAnimDraweeFrameLayout(){
         largenAnimDraweeFrameLayout = (LargenAnimDraweeFrameLayout) activity.findViewById(R.id.largenAnimDraweeFrameLayout);
         largenAnimDraweeFrameLayout.setOnHideListener(new LargenAnimDraweeFrameLayout.OnHideListener() {
             @Override

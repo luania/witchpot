@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <import type="com.luania.witchpot.widget.MenuToolbar.ToolbarData" />
-
         <variable
-            name="toolbarData"
-            type="ToolbarData" />
+            name="name"
+            type="String"/>
     </data>
-
-    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
@@ -23,8 +19,8 @@
             tools:context=".activity.LogInActivity">
 
             <include
-                layout="@layout/layout_appbar"
-                bind:toolbarData="@{toolbarData}" />
+                android:id="@+id/layoutAppbar"
+                layout="@layout/layout_appbar" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

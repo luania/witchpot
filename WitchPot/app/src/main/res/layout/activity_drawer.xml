@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <data>
-
         <variable
-            name="toolbarData"
-            type="com.luania.witchpot.widget.MenuToolbar.ToolbarData" />
+            name="name"
+            type="String"/>
     </data>
-
-    <com.luania.witchpot.widget.UserDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.luania.witchpot.widget.UserDrawerLayout
         android:id="@+id/userDrawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,8 +41,7 @@
 
                 <include
                     android:id="@+id/layoutAppbar"
-                    layout="@layout/layout_appbar"
-                    bind:toolbarData="@{toolbarData}" />
+                    layout="@layout/layout_appbar" />
             </android.support.design.widget.CoordinatorLayout>
         </com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
 

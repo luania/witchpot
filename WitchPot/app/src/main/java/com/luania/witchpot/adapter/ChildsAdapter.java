@@ -9,6 +9,7 @@ import com.luania.witchpot.R;
 import com.luania.witchpot.base.BaseListAdapter;
 import com.luania.witchpot.databinding.ItemChildBinding;
 import com.luania.witchpot.pojo.SegmentPojo;
+import com.luania.witchpot.util.MediaUtil;
 
 import java.util.List;
 
@@ -32,7 +33,9 @@ public class ChildsAdapter extends BaseListAdapter<SegmentPojo> {
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.binding.setSegmentPojo(datas.get(position));
+        final SegmentPojo segmentPojo = datas.get(position);
+        holder.binding.setSegmentPojo(segmentPojo);
+        holder.binding.simpleDraweeView.setImageURI(MediaUtil.getLittleImage(segmentPojo.decodeImage()));
         return convertView;
     }
 

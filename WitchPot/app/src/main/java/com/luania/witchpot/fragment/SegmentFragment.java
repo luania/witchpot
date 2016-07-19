@@ -29,12 +29,11 @@ public class SegmentFragment extends BaseFragment {
         if (onDrillListener != null) {
             onDrillListener.setUp(binding.autoSwipeRefreshLayout, binding.btnDrillDown, binding.btnDrillUp);
         }
-
         return rootView;
     }
 
     public void insertData(SegmentPojo segmentPojo) {
-        binding.setSegment(segmentPojo);
+        binding.setSegmentPojo(segmentPojo);
         binding.largenAnimDraweeView.setImage(segmentPojo.decodeImage());
     }
 

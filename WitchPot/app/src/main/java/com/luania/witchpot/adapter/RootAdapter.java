@@ -11,6 +11,7 @@ import com.luania.witchpot.activity.SegmentActivity;
 import com.luania.witchpot.base.BaseRecyclerAdapter;
 import com.luania.witchpot.databinding.ItemRootBinding;
 import com.luania.witchpot.pojo.SegmentPojo;
+import com.luania.witchpot.util.MediaUtil;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class RootAdapter extends BaseRecyclerAdapter<SegmentPojo,RootAdapter.Vie
     public void onBindViewHolder(RootAdapter.ViewHolder holder, final int position) {
         final SegmentPojo segmentPojo = datas.get(position);
         holder.binding.setSegmentPojo(segmentPojo);
+        holder.binding.simpleDraweeView.setImageURI(MediaUtil.getLittleImage(segmentPojo.decodeImage()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

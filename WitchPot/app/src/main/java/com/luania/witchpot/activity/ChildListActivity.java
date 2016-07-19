@@ -18,14 +18,10 @@ import com.luania.witchpot.listeners.DataListener;
 import com.luania.witchpot.pojo.SegmentPojo;
 import com.luania.witchpot.service.DataParser;
 import com.luania.witchpot.service.DataService;
-import com.luania.witchpot.widget.MenuToolbar;
 
 import java.util.List;
 
 public class ChildListActivity extends BaseActivity {
-
-    private ActivityChildListBinding binding;
-
     public static void startForResult(Activity activity, String pid) {
         Intent intent = new Intent(activity, ChildListActivity.class);
         intent.putExtra("pid", pid);
@@ -33,32 +29,37 @@ public class ChildListActivity extends BaseActivity {
     }
 
     private String pid;
+    private ActivityChildListBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(activity, R.layout.activity_child_list);
 
-        binding.setToolbarData(
-                new MenuToolbar.ToolbarData(
-                        R.string.action_select_a_child, R.menu.create, new Toolbar.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        int itemId = item.getItemId();
-                        switch (itemId) {
-                            case R.id.itemCreate:
-                                CreateSegmentActivity.start(activity, pid);
-                                break;
-                        }
-                        return false;
-                    }
-                }));
+        initToolbar();
 
         pid = getIntent().getStringExtra("pid");
         binding.autoSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadData();
+            }
+        });
+    }
+
+    private void initToolbar(){
+        binding.layoutAppbar.toolbar.setTitle( R.string.action_select_a_child);
+        binding.layoutAppbar.toolbar.inflateMenu(R.menu.create);
+        binding.layoutAppbar.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                switch (itemId) {
+                    case R.id.itemCreate:
+                        CreateSegmentActivity.start(activity, pid);
+                        break;
+                }
+                return false;
             }
         });
     }

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="toolbarData"
-            type="com.luania.witchpot.widget.MenuToolbar.ToolbarData"/>
+            name="name"
+            type="String"/>
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".activity.ChildListActivity">
 
         <include
-            layout="@layout/layout_appbar"
-            bind:toolbarData="@{toolbarData}" />
+            android:id="@+id/layoutAppbar"
+            layout="@layout/layout_appbar"/>
 
         <com.luania.witchpot.widget.AutoSwipeRefreshLayout
             android:id="@+id/autoSwipeRefreshLayout"

@@ -9,7 +9,6 @@ import com.luania.witchpot.R;
 import com.luania.witchpot.base.BaseActivity;
 import com.luania.witchpot.databinding.ActivitySignUpBinding;
 import com.luania.witchpot.service.UserService;
-import com.luania.witchpot.widget.MenuToolbar;
 import com.wilddog.client.Wilddog;
 import com.wilddog.client.WilddogError;
 
@@ -24,7 +23,7 @@ public class SignUpActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(activity, R.layout.activity_sign_up);
 
-        binding.setToolbarData(new MenuToolbar.ToolbarData(R.string.user_login));
+        binding.layoutAppbar.toolbar.setTitle(R.string.user_login);
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

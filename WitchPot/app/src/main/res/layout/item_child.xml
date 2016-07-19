@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <import type="com.luania.witchpot.util.MediaUtil"/>
         <variable
             name="segmentPojo"
             type="com.luania.witchpot.pojo.SegmentPojo" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/child_height"
         android:orientation="horizontal"
@@ -20,7 +19,6 @@
             android:id="@+id/simpleDraweeView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:imageURI="@{MediaUtil.getLittleImage(segmentPojo.decodeImage())}"
             android:background="@color/colorBackground"
             fresco:viewAspectRatio="1" />
 
@@ -31,23 +29,21 @@
             android:paddingLeft="@dimen/base_padding">
 
             <TextView
-                android:id="@+id/tvTitle"
-                android:text="@{segmentPojo.decodeText()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{segmentPojo.decodeText()}"
                 android:textSize="@dimen/text_medium" />
 
             <TextView
-                android:id="@+id/tvAuthor"
-                android:text="@{segmentPojo.getAuthor()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{segmentPojo.getAuthor()}"
                 android:textColor="@color/colorTextPrimaryDark" />
         </LinearLayout>
     </LinearLayout>

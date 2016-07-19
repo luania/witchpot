@@ -9,7 +9,6 @@ import com.luania.witchpot.R;
 import com.luania.witchpot.base.BaseActivity;
 import com.luania.witchpot.databinding.ActivityLogInBinding;
 import com.luania.witchpot.service.UserService;
-import com.luania.witchpot.widget.MenuToolbar;
 import com.wilddog.client.AuthData;
 import com.wilddog.client.Wilddog;
 import com.wilddog.client.WilddogError;
@@ -22,7 +21,8 @@ public class LogInActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(activity, R.layout.activity_log_in);
-        binding.setToolbarData(new MenuToolbar.ToolbarData(R.string.user_login,0,null));
+        binding.layoutAppbar.toolbar.setTitle(R.string.user_login);
+
         binding.btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

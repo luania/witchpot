@@ -17,7 +17,6 @@ import com.luania.witchpot.pojo.SegmentPojo;
 import com.luania.witchpot.service.DataParser;
 import com.luania.witchpot.service.DataService;
 import com.luania.witchpot.service.UserService;
-import com.luania.witchpot.widget.MenuToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,17 @@ public class DrawerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(activity, R.layout.activity_drawer);
-        binding.setToolbarData(new MenuToolbar.ToolbarData(R.string.other_root_list, R.menu.create, new Toolbar.OnMenuItemClickListener() {
+
+        initToolbar();
+        initRecycler();
+        initSwipe();
+        initActionBarDrawerToggle();
+    }
+
+    private void initToolbar(){
+        binding.layoutAppbar.toolbar.setTitle(R.string.other_root_list);
+        binding.layoutAppbar.toolbar.inflateMenu(R.menu.create);
+        binding.layoutAppbar.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int itemId = item.getItemId();
@@ -46,11 +55,7 @@ public class DrawerActivity extends BaseActivity {
                 }
                 return false;
             }
-        }));
-
-        initRecycler();
-        initSwipe();
-        initActionBarDrawerToggle();
+        });
     }
 
     private void initRecycler() {

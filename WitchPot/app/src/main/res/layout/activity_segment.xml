@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:bind="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <import type="com.luania.witchpot.widget.MenuToolbar.ToolbarData" />
-
         <variable
-            name="toolbarData"
-            type="ToolbarData" />
+            name="name"
+            type="String"/>
     </data>
-
-    <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,8 +24,7 @@
 
             <include
                 android:id="@+id/layoutAppbar"
-                layout="@layout/layout_appbar"
-                bind:toolbarData="@{toolbarData}" />
+                layout="@layout/layout_appbar" />
         </android.support.design.widget.CoordinatorLayout>
     </com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
 </layout>
