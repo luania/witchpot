@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <com.luania.witchpot.widget.LargenAnimDraweeView
+                        <com.luania.witchpot.widget.HigherAnimDraweeView
                             android:id="@+id/largenAnimDraweeView"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"

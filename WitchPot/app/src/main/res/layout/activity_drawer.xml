@@ -2,12 +2,6 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <data>
-        <variable
-            name="name"
-            type="String"/>
-    </data>
     <com.luania.witchpot.widget.UserDrawerLayout
         android:id="@+id/userDrawerLayout"
         android:layout_width="match_parent"

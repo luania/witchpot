@@ -28,29 +28,32 @@ public class LogInActivity extends BaseActivity {
             public void onClick(View v) {
                 String email = binding.tietEmail.getText().toString().trim();
                 String password = binding.tietPassword.getText().toString().trim();
-
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    toast(getString(R.string.message_input_wrong));
-                }
-
-                UserService.loginWithPassword(email, password, new Wilddog.AuthResultHandler() {
-                    @Override
-                    public void onAuthenticated(AuthData authData) {
-                        toast(getString(R.string.user_login_successed));
-                        finish();
-                    }
-
-                    @Override
-                    public void onAuthenticationError(WilddogError wilddogError) {
-                        toast(wilddogError.getMessage());
-                    }
-                });
+                logIn(email,password);
             }
         });
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(SignUpActivity.class);
+            }
+        });
+    }
+
+    private void logIn(String email,String password){
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            toast(getString(R.string.message_input_wrong));
+            return;
+        }
+        UserService.loginWithPassword(email, password, new Wilddog.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                toast(getString(R.string.user_login_successed));
+                finish();
+            }
+
+            @Override
+            public void onAuthenticationError(WilddogError wilddogError) {
+                toast(wilddogError.getMessage());
             }
         });
     }

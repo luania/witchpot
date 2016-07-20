@@ -1,6 +1,6 @@
 package com.luania.witchpot.widget;
 
-import android.animation.ValueAnimator;
+import android.animation.Animator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -8,22 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.luania.witchpot.R;
+import com.luania.witchpot.util.PropertyAnimUtil;
 
 /**
  * Created by luania on 16/7/9.
  */
-public class LargenAnimDraweeFrameLayout extends FrameLayout {
+public class HigherAnimDraweeFrameLayout extends FrameLayout {
 
-    private OnHideListener onHideListener;
+    private PropertyAnimUtil.AnimatorEndListener onHideListener;
 
     private SimpleDraweeView simpleDraweeView;
     private ImageView ivRemove;
 
-    public LargenAnimDraweeFrameLayout(Context context, AttributeSet attrs) {
+    public HigherAnimDraweeFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         initSimpleDraweeView(context);
         initIvRemove(context);
@@ -61,51 +61,27 @@ public class LargenAnimDraweeFrameLayout extends FrameLayout {
     }
 
     public void setImage(String uri) {
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(getHeight(), getWidth());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int value = (int) animation.getAnimatedValue();
-                setLayoutParams(new LinearLayout.LayoutParams(getWidth(), value));
-            }
-        });
-        valueAnimator.setDuration(500);
-        valueAnimator.start();
+        PropertyAnimUtil.getHigherToSquare(this);
         simpleDraweeView.setImageURI(uri);
     }
 
     private void hide() {
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(getHeight(), 0);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        PropertyAnimUtil.getLowerToGone(this, new PropertyAnimUtil.AnimatorEndListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int value = (int) animation.getAnimatedValue();
-                setLayoutParams(new LinearLayout.LayoutParams(getWidth(), value));
-                if (value == 0) {
-                    if(onHideListener != null){
-                        onHideListener.onHide();
-                        simpleDraweeView.setImageURI("");
-                    }
+            public void onAnimationEnd(Animator animation) {
+                if(onHideListener != null){
+                    onHideListener.onAnimationEnd(animation);
                 }
+                simpleDraweeView.setImageURI("");
             }
         });
-        valueAnimator.setDuration(500);
-        valueAnimator.start();
-    }
-
-    public interface OnHideListener {
-        void onHide();
-    }
-
-    public SimpleDraweeView getSimpleDraweeView() {
-        return simpleDraweeView;
     }
 
     public ImageView getIvRemove() {
         return ivRemove;
     }
 
-    public void setOnHideListener(OnHideListener onHideListener) {
+    public void setOnHideListener(PropertyAnimUtil.AnimatorEndListener onHideListener) {
         this.onHideListener = onHideListener;
     }
 }

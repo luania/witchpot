@@ -27,18 +27,13 @@
     <string name="user_name">用户名</string>
     <string name="user_email">邮箱</string>
     <string name="user_signup">注册</string>
-    <string name="user_signup_successed">注册成功</string>
-    <string name="user_signup_failed">注册失败</string>
     <string name="user_please_login">请先登陆</string>
     <string name="user_login">登陆</string>
     <string name="user_login_successed">登陆成功</string>
-    <string name="user_login_failed">登陆失败</string>
     <string name="user_logout">退出登陆</string>
     <string name="user_logout_success">退出登陆成功</string>
 
 
-
-    <string name="other_space"> </string>
     <string name="other_image">图片</string>
     <string name="other_home">首页</string>
     <string name="other_root_list">根片段列表</string>

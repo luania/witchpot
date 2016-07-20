@@ -31,26 +31,30 @@ public class SignUpActivity extends BaseActivity {
                 final String password = binding.tietPassword.getText().toString().trim();
                 final String rePassword = binding.tietRePassword.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(rePassword)) {
-                    toast(getString(R.string.message_input_wrong));
-                    return;
-                } else if (!password.equals(rePassword)) {
-                    toast(getString(R.string.message_input_password_diff));
-                    return;
-                }
+                setUp(email, password, rePassword);
+            }
+        });
+    }
 
-                UserService.createUser(email, password, new Wilddog.ValueResultHandler<Map<String, Object>>() {
-                    @Override
-                    public void onSuccess(Map<String, Object> stringObjectMap) {
-                        toast(stringObjectMap.toString());
-                        finish();
-                    }
+    private void setUp(String email, String password, String rePassword) {
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(rePassword)) {
+            toast(getString(R.string.message_input_wrong));
+            return;
+        } else if (!password.equals(rePassword)) {
+            toast(getString(R.string.message_input_password_diff));
+            return;
+        }
 
-                    @Override
-                    public void onError(WilddogError wilddogError) {
-                        toast(wilddogError.getMessage());
-                    }
-                });
+        UserService.createUser(email, password, new Wilddog.ValueResultHandler<Map<String, Object>>() {
+            @Override
+            public void onSuccess(Map<String, Object> stringObjectMap) {
+                toast(stringObjectMap.toString());
+                finish();
+            }
+
+            @Override
+            public void onError(WilddogError wilddogError) {
+                toast(wilddogError.getMessage());
             }
         });
     }

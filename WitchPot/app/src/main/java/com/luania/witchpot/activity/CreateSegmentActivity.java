@@ -1,5 +1,6 @@
 package com.luania.witchpot.activity;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -24,12 +25,13 @@ import com.luania.witchpot.service.qiniu.MediaService;
 import com.luania.witchpot.util.ColorUtil;
 import com.luania.witchpot.util.FileUtil;
 import com.luania.witchpot.util.MediaUtil;
-import com.luania.witchpot.widget.LargenAnimDraweeFrameLayout;
+import com.luania.witchpot.util.PropertyAnimUtil;
+import com.luania.witchpot.widget.HigherAnimDraweeFrameLayout;
 import com.wilddog.client.Wilddog;
 
 public class CreateSegmentActivity extends BaseActivity {
 
-    private LargenAnimDraweeFrameLayout largenAnimDraweeFrameLayout;
+    private HigherAnimDraweeFrameLayout higherAnimDraweeFrameLayout;
     private ActivityCreateSegmentBinding binding;
 
     public static void start(Context context, String pid) {
@@ -73,10 +75,10 @@ public class CreateSegmentActivity extends BaseActivity {
     }
 
     private void initLargenAnimDraweeFrameLayout(){
-        largenAnimDraweeFrameLayout = (LargenAnimDraweeFrameLayout) activity.findViewById(R.id.largenAnimDraweeFrameLayout);
-        largenAnimDraweeFrameLayout.setOnHideListener(new LargenAnimDraweeFrameLayout.OnHideListener() {
+        higherAnimDraweeFrameLayout = (HigherAnimDraweeFrameLayout) activity.findViewById(R.id.largenAnimDraweeFrameLayout);
+        higherAnimDraweeFrameLayout.setOnHideListener(new PropertyAnimUtil.AnimatorEndListener() {
             @Override
-            public void onHide() {
+            public void onAnimationEnd(Animator animation) {
                 imageUrl = "";
             }
         });
@@ -119,12 +121,12 @@ public class CreateSegmentActivity extends BaseActivity {
             @Override
             public void upLoadComplete(String url) {
                 dismissDialog();
-                largenAnimDraweeFrameLayout.setImage(url);
+                higherAnimDraweeFrameLayout.setImage(url);
                 imageUrl = url;
                 MediaUtil.getBitmapWithFresco(activity, url, new BaseBitmapDataSubscriber() {
                     @Override
                     protected void onNewResultImpl(Bitmap bitmap) {
-                        ColorUtil.tintImageView(bitmap,largenAnimDraweeFrameLayout.getIvRemove());
+                        ColorUtil.tintImageView(bitmap, higherAnimDraweeFrameLayout.getIvRemove());
                     }
 
                     @Override

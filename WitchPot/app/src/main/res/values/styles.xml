@@ -7,7 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
 
     <style name="AnimationActivity" parent="@android:style/Animation.Activity">
@@ -44,19 +43,4 @@
         <item name="android:clipToPadding">false</item>
     </style>
 
-    <style name="Icon">
-        <item name="android:layout_width">@dimen/icon_size</item>
-        <item name="android:layout_height">@dimen/icon_size</item>
-    </style>
-
-    <style name="Icon.Padding">
-        <item name="android:layout_width">@dimen/icon_size_with_padding</item>
-        <item name="android:layout_height">@dimen/icon_size_with_padding</item>
-        <item name="android:padding">@dimen/base_padding</item>
-    </style>
-
-    <style name="Icon.Padding.Selectable">
-        <item name="android:clickable">true</item>
-        <item name="android:foreground">?attr/selectableItemBackground</item>
-    </style>
 </resources>

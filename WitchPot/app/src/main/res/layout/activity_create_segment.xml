@@ -2,12 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <data>
-        <variable
-            name="name"
-            type="String"/>
-    </data>
     <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -54,7 +48,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <com.luania.witchpot.widget.LargenAnimDraweeFrameLayout
+                            <com.luania.witchpot.widget.HigherAnimDraweeFrameLayout
                                 android:id="@+id/largenAnimDraweeFrameLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp" />
